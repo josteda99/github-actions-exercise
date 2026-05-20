@@ -1,0 +1,18 @@
+name: 01- Hello
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  hello:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Hello
+        run: echo "Hello, from github actions"
+
+      - name: see date runner
+        run: date
+
+      - name: see files
+        run: ls -la
