@@ -1,0 +1,17 @@
+name: 02-manual
+
+on:
+  workflow_dispatch:
+
+jobs:
+  manual:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Hello
+        run: echo "Hello, from github actions"
+
+      - name: see date runner
+        run: date
+
+      - name: see files
+        run: ls -la
