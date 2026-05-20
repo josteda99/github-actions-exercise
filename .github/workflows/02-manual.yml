@@ -2,6 +2,30 @@ name: 02-manual
 
 on:
   workflow_dispatch:
+    inputs:
+      log_level:
+        description: "Log level"
+        required: true
+        default: "info"
+        type: choice
+        options:
+          - debug
+          - info
+          - warning
+          - error
+      environment:
+        description: "Environment"
+        type: environment
+      dry_run:
+        description: "Dry run"
+        type: boolean
+        default: false
+      version:
+        description: "Version"
+        type: string
+      reason:
+        description: "Reason for manual trigger"
+        type: string
 
 jobs:
   manual:
@@ -15,3 +39,17 @@ jobs:
 
       - name: see files
         run: ls -la
+
+      - name: see inputs
+        env:
+          LOG_LEVEL: ${{ github.event.inputs.log_level }}
+          ENVIRONMENT: ${{ github.event.inputs.environment }}
+          DRY_RUN: ${{ github.event.inputs.dry_run }}
+          VERSION: ${{ github.event.inputs.version }}
+          REASON: ${{ github.event.inputs.reason }}
+        run: |
+          echo "Log level: ${{ github.event.inputs.log_level }}"
+          echo "Environment: ${{ github.event.inputs.environment }}"
+          echo "Dry run: ${{ github.event.inputs.dry_run }}"
+          echo "Version: ${{ github.event.inputs.version }}"
+          echo "Reason: ${{ github.event.inputs.reason }}"
