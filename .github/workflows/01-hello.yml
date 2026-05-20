@@ -16,3 +16,11 @@ jobs:
 
       - name: see files
         run: ls -la
+  repo-files:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Download repository files
+        uses: actions/checkout@v6
+
+      - name: List repository files
+        run: ls -la
